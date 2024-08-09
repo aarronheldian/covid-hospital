@@ -1,37 +1,47 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import React from "react";
+import { Tabs } from "expo-router";
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: "#0873BB",
+        tabBarInactiveTintColor: "#3B525C",
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
+        },
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="dashboard"
         options={{
-          title: 'Home',
+          title: "Dashboard",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "grid" : "grid-outline"}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="hospital"
         options={{
-          title: 'Explore',
+          title: "Hospital",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "business" : "business-outline"}
+              color={color}
+            />
           ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default TabsLayout;
